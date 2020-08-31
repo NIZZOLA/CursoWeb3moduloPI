@@ -1,6 +1,7 @@
 ﻿using ConsoleEventos.Models;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ConsoleEventos
 {
@@ -8,9 +9,12 @@ namespace ConsoleEventos
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            ArvoreGenealogica();
 
 
+
+
+            /*
             PessoaModel pesJose = new PessoaModel() { PessoaId = 1, Nome = "JOSE", Sexo = SexoEnum.Masculino };
             PessoaModel pesMaria = new PessoaModel() { PessoaId = 1, Nome = "MARIA", Sexo = SexoEnum.Feminino };
             PessoaModel pes2 = new PessoaModel() { PessoaId = 1, Nome = "JESUS", Sexo = SexoEnum.Masculino, Pai = pesJose, Mae = pesMaria };
@@ -51,7 +55,43 @@ namespace ConsoleEventos
             };
 
             evento1.Palestrantes.Add(palestrante1);
+            */
+        }
+
+        public static void ArvoreGenealogica()
+        {
+            Console.WriteLine("CADASTRAR PESSOAS");
+
+            List<PessoaModel> listaPessoas = new List<PessoaModel>();
+
+            string continua = "S";
+
+            do
+            {
+                var pes = new PessoaModel();
+                Console.WriteLine("Digite o nome da pessoa");
+                pes.Nome = Console.ReadLine();
+                // receber outros atributos da pessoa (receber apenas o campo Sexo)
+                listaPessoas.Add(pes);
+
+                Console.WriteLine("Deseja receber mais pessoas (S/N) ?");
+                continua = Console.ReadLine();
+
+            } while (continua.ToUpper() == "S");
+
+
+            Console.Clear();
+            foreach (var item in listaPessoas.OrderBy(a => a.Nome) )
+            {
+                // exibir qual é o sexo
+                Console.WriteLine($"Nome: {item.Nome}  \n ");
+            }
+
+
 
         }
+
+
+
     }
 }
