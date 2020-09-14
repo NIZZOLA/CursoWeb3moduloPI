@@ -1,0 +1,53 @@
+﻿@model IEnumerable<ProjetoNoticiasMVCEtec.Models.NoticiaModel>
+
+@{
+    ViewData["Title"] = "Cadastro de Noticias";
+}
+
+<h1>Cadastro de Noticias</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Titulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DataDaInclusao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NomeDaImagem)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Titulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DataDaInclusao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NomeDaImagem)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.NoticiaId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.NoticiaId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.NoticiaId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
